@@ -1,6 +1,6 @@
 import { NativeModules } from "react-native";
 
-const RNZendeskSDK = NativeModules.RNZendeskSDK;
+const RNZendeskSDK = NativeModules.RNZendeskSDKModule;
 
 console.log("Joas");
 console.log(NativeModules);
