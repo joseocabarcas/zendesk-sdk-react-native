@@ -17,7 +17,7 @@ public class RNZendeskSDKPackage implements ReactPackage {
             ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
 
-        modules.add(new RNZendeskSDK(reactContext));
+        modules.add(new RNZendeskSDKModule(reactContext));
         return modules;
     }
 
