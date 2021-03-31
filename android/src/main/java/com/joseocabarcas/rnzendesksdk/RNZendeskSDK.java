@@ -1,5 +1,6 @@
 package com.joseocabarcas.rnzendesksdk;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.facebook.react.bridge.ReactApplicationContext;
