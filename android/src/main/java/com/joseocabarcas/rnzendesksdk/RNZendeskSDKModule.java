@@ -48,7 +48,7 @@ public class RNZendeskSDKModule extends ReactContextBaseJavaModule {
                     @Override
                     public void onFailure(@Nullable MessagingError cause) {
                         Log.e("IntegrationApplication", "Messaging failed to initialize", cause);
-                        callBack.invoke(cause);
+                        callBack.invoke(cause.getMessage());
                     }
                 });
         Log.d(TAG, key);

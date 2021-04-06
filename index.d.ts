@@ -10,9 +10,5 @@ declare module 'zendesk-sdk-react-native' {
     key: string,
   }
 
-  export type CallbackFunction = (error: ErrorType | null) => void;
-
-  export type ErrorType = {
-    message: string;
-  }
+  export type CallbackFunction = (error: string | null) => void;
 }
