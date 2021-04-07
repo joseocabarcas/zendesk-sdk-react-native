@@ -1,6 +1,7 @@
 package com.joseocabarcas.rnzendesksdk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -62,6 +63,6 @@ public class RNZendeskSDKModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void showMessaging() {
         Context context = appContext;
-        Messaging.instance().showMessaging(context);
+        Messaging.instance().showMessaging(context, Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 }
