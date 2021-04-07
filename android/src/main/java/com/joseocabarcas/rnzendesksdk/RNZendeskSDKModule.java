@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -31,27 +32,31 @@ public class RNZendeskSDKModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void init(ReadableMap options, Callback callBack) {
-        String key = options.getString("key");
-        Context context = appContext;
-        Messaging.initialize(
-                context,
-                key,
-                new SuccessCallback<Messaging>() {
-                    @Override
-                    public void onSuccess(Messaging value) {
-                        Log.i("IntegrationApplication", "Initialization successful");
-                        callBack.invoke(null);
-                    }
-                },
-                new FailureCallback<MessagingError>() {
-                    @Override
-                    public void onFailure(@Nullable MessagingError cause) {
-                        Log.e("IntegrationApplication", "Messaging failed to initialize", cause);
-                        callBack.invoke(cause.getMessage());
-                    }
-                });
-        Log.d(TAG, key);
+    public void init(ReadableMap options, Promise promise) {
+        try {
+            String key = options.getString("key");
+            Context context = appContext;
+            Messaging.initialize(
+                    context,
+                    key,
+                    new SuccessCallback<Messaging>() {
+                        @Override
+                        public void onSuccess(Messaging value) {
+                            Log.i("IntegrationApplication", "Initialization successful");
+                            promise.resolve(null);
+                        }
+                    },
+                    new FailureCallback<MessagingError>() {
+                        @Override
+                        public void onFailure(@Nullable MessagingError cause) {
+                            Log.e("IntegrationApplication", "Messaging failed to initialize", cause);
+                            promise.reject("Messaging failed to initialize", cause.getMessage());
+                        }
+                    });
+            Log.d(TAG, key);
+        } catch (Exception e) {
+            promise.reject("Exception Error", e.getMessage());
+        }
     }
 
     @ReactMethod
