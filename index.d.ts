@@ -1,4 +1,4 @@
-declare module 'zendesk-sdk-react-native' {
+declare module '@joseocabarcas/zendesk-sdk-react-native' {
   // normal init function when you want to use all of the sdks
   export function init(initializationOptins: InitOptions): Promise<string | null>;
 
